@@ -22,7 +22,7 @@ jobs:
         
       - name: Get Docker Image from Docker Hub
         run: |
-          IMAGE="docker.io/nfinnegan00/supermariogitopsproject:latest"
+          IMAGE="docker.io/nfinnegan00/supermariogitopsproject:2"
           docker pull $IMAGE
           docker save -o supermariolatestdockerimage.tar $IMAGE
      
