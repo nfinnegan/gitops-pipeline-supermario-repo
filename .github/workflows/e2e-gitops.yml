@@ -61,14 +61,14 @@ jobs:
         
       - name: Get Docker Image from Docker Hub
         run: |
-          IMAGE="docker.io/nfinnegan00/supermariogitopsproject:2"
+          IMAGE="docker.io/nfinnegan00/supermariogitopsproject:3"
           docker pull $IMAGE
           docker save -o supermariolatestdockerimage.tar $IMAGE
      
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: docker.io/nfinnegan00/supermariogitopsproject:2
+          image-ref: docker.io/nfinnegan00/supermariogitopsproject:3
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
           
@@ -88,9 +88,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           git pull
-          sed -i "s|image: nfinnegan00/supermariogitopsproject:.*$|image: nfinnegan00/supermariogitopsproject:2/supermariogitopsproject:${{ env.VERSION }}|" deployment.yaml
-          echo ${{ env.VERSION }} > version.txt
-          CURRENT_VERSION=$(cat version.txt)
+          sed -i "s|image: nfinnegan00/supermariogitopsproject:.*$|image: nfinnegan00/supermariogitopsproject:2/supermariogitopsproject:3|" deployment.yaml
           git add deployment.yaml version.txt
-          git commit -m "Updated deployment yaml and version txt file with supermario image tag to ${CURRENT_VERSION}"
+          git commit -m "Updated deployment yaml and version txt file with supermario image tag to 3"
           git push 
