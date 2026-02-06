@@ -88,7 +88,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           git pull
-          sed -i "s|image: nfinnegan00/supermariogitopsproject:.*$|image: nfinnegan00/supermariogitopsproject:2/supermariogitopsproject:3|" deployment.yaml
+          sed -i "s|image: nfinnegan00/supermariogitopsproject:.*$|image: nfinnegan00/supermariogitopsproject:2/supermariogitopsproject:3|" deployment.yml
           git add deployment.yml version.txt
           git commit -m "Updated deployment yaml and version txt file with supermario image tag to 3"
           git push 
